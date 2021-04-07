@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+  Date: 09 Nov 2020
+  Invoice No: IVHF24323774
+  Order No: 135901223
+  Author: SAEROX (by mDsign)
+-->
+<div class="col-xl-6 col-12">
+  <!-- Begin Timeline -->
+  <div class="timeline timeline-line-solid">
+    <span class="timeline-label">
+      <span class="label">Start : {{ .StartTime }}</span>
+    </span>
+    {{range .Items}}
+    <!-- Begin Timeline Item -->
+    <div class="timeline-item">
+      <div class="timeline-point timeline-point"></div>
+      <!-- Begin Timeline Event -->
+      <div class="timeline-event">
+        <!-- Begin Widget -->
+        <div class="widget widget-08 has-shadow">
+          <!-- Begin Widget Body -->
+          <div class="widget-body">
+            <div class="today">
+              <div class="title">{{ .Name }}</div>
+              <!--<div class="new-tasks"><span class="nb">2</span> new tasks</div>-->
+            </div>
+            <!-- Begin List -->
+            <div class="todo-list">
+              <ul id="sortable" class="list">
+                {{if .Pass}}
+                <li class="task-color task-violet">
+                  <i class="ion-checkmark"></i>&nbsp;<label class="text-primary" for="check-1">Success</label>
+                  <div class="c-icon alert-success">
+                    &nbsp;
+                  </div>
+                </li>
+                {{end}}
+                {{if .Fail}}
+                <li class="task-color task-violet">
+                  <i class="ion-close"></i>&nbsp;<label class="text-primary" for="check-1">Fail</label>
+                  <div class="c-icon alert-danger">
+                    &nbsp;
+                  </div>
+                </li>
+                {{end}}
+              </ul>
+            </div>
+            <!-- End List -->
+          </div>
+          <!-- End Widget Body -->
+        </div>
+        <!-- End Widget -->
+        <div class="time-right">
+          <a href="#" onclick="return false;" span data-toggle="popover" data-placement="right" data-original-title="<b>CONSOLE LOG {{ .Name }}</b>" data-content="{{ .Log }}" data-html="true">view console log</a>
+        </div>
+      </div>
+    </div>
+    {{end}}
+    <span class="timeline-label">
+      <span class="label">End : {{ .StopTime }}</span>
+    </span>
+  </div>
+</div>
