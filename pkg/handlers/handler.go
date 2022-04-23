@@ -55,8 +55,8 @@ func ResultsHandler(w http.ResponseWriter, r *http.Request, conn connectors.Clie
 		item.Time = f.ModTime().Unix()
 		unixTimeUTC := time.Unix(f.ModTime().Unix(), 0)
 		item.DisplayTime = fmt.Sprintf("%v", unixTimeUTC)
-		replacer := strings.NewReplacer("\n", "<br>", "\x1b[1;34m [INFO] \x1b[0m", "<span style=\"color:#3498eb\">&nbsp;[INFO]</span>","\x1b[1;32m [DEBUG] \x1b[0m","<span style=\"color:#34eb40\">&nbsp;[DEBUG]</span>","\x1b[1;36m [TRACE] \x1b[0m","<span style=\"color:#d234eb\">&nbsp;[TRACE]</span>","\x1b[1;31m [ERROR] \x1b[0m","<span style=\"color:#eb4034\">&nbsp;[ERROR]</span>","INFO:","<span style=\"color:#3498eb\">&nbsp;INFO:</span>")
-		item.Log =  replacer.Replace(string(data))
+		replacer := strings.NewReplacer("\n", "<br>", "\x1b[1;34m [INFO] \x1b[0m", "<span style=\"color:#3498eb\">&nbsp;[INFO]</span>", "\x1b[1;32m [DEBUG] \x1b[0m", "<span style=\"color:#34eb40\">&nbsp;[DEBUG]</span>", "\x1b[1;36m [TRACE] \x1b[0m", "<span style=\"color:#d234eb\">&nbsp;[TRACE]</span>", "\x1b[1;31m [ERROR] \x1b[0m", "<span style=\"color:#eb4034\">&nbsp;[ERROR]</span>", "INFO:", "<span style=\"color:#3498eb\">&nbsp;INFO:</span>")
+		item.Log = replacer.Replace(string(data))
 		if item.Log[0:3] == "PAS" {
 			item.Pass = true
 			item.Fail = false
@@ -68,11 +68,11 @@ func ResultsHandler(w http.ResponseWriter, r *http.Request, conn connectors.Clie
 		items = append(items, *item)
 		item = &schema.ItemInfo{}
 	}
-	addHeaders(w,r)
+	addHeaders(w, r)
 	res = &schema.ResultsSchema{StartTime: items[0].DisplayTime, StopTime: items[len(items)-1].DisplayTime, Items: items}
 	html, err := ioutil.ReadFile(os.Getenv("TEMPLATE_FILE"))
 	if err != nil {
-		conn.Error("Rsultshandler %v", err)
+		conn.Error("Resultshandler %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprintf(w, "%s", "ERROR creating template")
 		return
@@ -81,12 +81,15 @@ func ResultsHandler(w http.ResponseWriter, r *http.Request, conn connectors.Clie
 	tmpl := template.New(vars["project"])
 	tmp, er := tmpl.Parse(string(html))
 	if er != nil {
-		conn.Error("Rsultshandler %v", er)
+		conn.Error("Resultshandler %v", er)
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprintf(w, "%s", "ERROR parsing template")
 		return
 	}
-	tmp.Execute(&tpl, res)
+	err = tmp.Execute(&tpl, res)
+	if err != nil {
+		conn.Error("Resultshandler %v", er)
+	}
 	conn.Debug("ResultsHandler response : %s", tpl.String())
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "%s", tpl.String())
@@ -95,7 +98,6 @@ func ResultsHandler(w http.ResponseWriter, r *http.Request, conn connectors.Clie
 func IsAlive(w http.ResponseWriter, r *http.Request) {
 	addHeaders(w, r)
 	fmt.Fprintf(w, "{ \"version\" : \""+os.Getenv("VERSION")+"\" , \"name\": \""+os.Getenv("NAME")+"\" }")
-	return
 }
 
 // headers (with cors) utility

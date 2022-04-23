@@ -1,0 +1,1 @@
+PASS:<br>golangci-lint run -c .golangci.yaml --deadline=30m

@@ -1,0 +1,29 @@
+PASS:<br>podman build -t  quay.io/luigizuccarelli/golang-gitwebhook-service:1.16.3 .
+STEP 1/9: FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
+STEP 2/9: LABEL maintainer="lzuccarelli@tfd.ie"
+--> Using cache 6f3f94b6fdb967788e47fbf2672146e27f2c4dc36c388b7e53fc2a34ee8ac0c9
+--> 6f3f94b6fdb
+STEP 3/9: RUN mkdir -p /go/src /go/bin && chmod -R 0755 /go 
+--> Using cache d8ee7a8e05dd44454b5db841462a1421babfc1813840cb9380b37c9738e98b27
+--> d8ee7a8e05d
+STEP 4/9: COPY build/microservice uid_entrypoint.sh /go/ 
+--> Using cache d7d84f27ecc9d4f3736f52344f2e92dc183df85d1bd77d22642c5e1be0b089ef
+--> d7d84f27ecc
+STEP 5/9: RUN chown 1001:root /go
+--> Using cache 5844976be80e4671d36f9d5fdd113356cda5e02fed2247f09b2ddc05de7db377
+--> 5844976be80
+STEP 6/9: WORKDIR /go
+--> Using cache db69cdb32c744f26e9b031601777199ca3043cd71698939d7aa1eee3fa7c17ff
+--> db69cdb32c7
+STEP 7/9: USER 1001
+--> Using cache e1fc35538d1000e60c1291aaa3cb6f23a9a875b9a223b0ea021aa07304970085
+--> e1fc35538d1
+STEP 8/9: ENTRYPOINT [ "./uid_entrypoint.sh" ]
+--> Using cache 839b5050086dabdeb80d63d5932b81af9accb25cf8e2fb276162bf6fa935d0fd
+--> 839b5050086
+STEP 9/9: CMD ["./microservice"]
+--> Using cache b7286011dd868a19a33ebabbffbd3c2bffddb5455f8066ee2009f6f336c965fa
+COMMIT quay.io/luigizuccarelli/golang-gitwebhook-service:1.16.3
+--> b7286011dd8
+Successfully tagged quay.io/luigizuccarelli/golang-gitwebhook-service:1.16.3
+b7286011dd868a19a33ebabbffbd3c2bffddb5455f8066ee2009f6f336c965fa

@@ -6,6 +6,9 @@ build:
 	mkdir -p build
 	go build -o build ./...
 
+verify:
+	golangci-lint run -c .golangci.yaml --deadline=30m
+
 test:
 	go test -v -coverprofile=tests/results/cover.out ./...
 
@@ -20,4 +23,4 @@ container:
 	podman build -t  quay.io/luigizuccarelli/golang-cicd-webconsole:1.15.6 .
 
 push:
-	podman push --authfile=/home/lzuccarelli/confif.json quay.io/luigizuccarelli/golang-cicd-webconsole:1.15.6 
+	podman push --authfile=/home/lzuccarelli/.docker/config.json quay.io/luigizuccarelli/golang-cicd-webconsole:1.15.6 

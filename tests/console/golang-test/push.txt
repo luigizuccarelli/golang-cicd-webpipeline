@@ -1,0 +1,1 @@
+PASS:<br>podman push --authfile=/home/lzuccarelli/config.json quay.io/luigizuccarelli/golang-gitwebhook-service:1.16.3 

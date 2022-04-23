@@ -9,6 +9,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+
 	"lmzsoftware.com/lzuccarelli/golang-cicd-webconsole/pkg/connectors"
 	"lmzsoftware.com/lzuccarelli/golang-cicd-webconsole/pkg/handlers"
 	"lmzsoftware.com/lzuccarelli/golang-cicd-webconsole/pkg/validator"

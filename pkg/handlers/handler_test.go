@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -14,17 +13,11 @@ import (
 	"lmzsoftware.com/lzuccarelli/golang-cicd-webconsole/pkg/connectors"
 )
 
-type errReader int
-
-func (errReader) Read(p []byte) (n int, err error) {
-	return 0, errors.New("Inject (force) readAll test error")
-}
-
 func TestAllMiddleware(t *testing.T) {
 
-	logger := multi.NewLogger(multi.HTML, multi.TRACE)
+	logger := multi.NewLogger(multi.COLOR, multi.TRACE)
 	os.Setenv("TEMPLATE_FILE", "../../html-templates/template.html")
-	os.Setenv("CICD_CONSOLE_DIR", "../../../console")
+	os.Setenv("CICD_CONSOLE_DIR", "../../tests/console")
 
 	t.Run("IsAlive : should pass", func(t *testing.T) {
 		var STATUS int = 200

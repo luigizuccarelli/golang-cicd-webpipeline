@@ -1,0 +1,71 @@
+PASS:<br>INFO: Scanner configuration file: /home/lzuccarelli/Programs/sonar-scanner-4.6.0.2311-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: /home/lzuccarelli/cicd/workdir/golang-gitwebhook-service/sonar-project.properties
+INFO: SonarScanner 4.6.0.2311
+INFO: Java 11.0.3 AdoptOpenJDK (64-bit)
+INFO: Linux 5.16.19-200.fc35.x86_64 amd64
+INFO: User cache: /home/lzuccarelli/.sonar/cache
+INFO: Scanner configuration file: /home/lzuccarelli/Programs/sonar-scanner-4.6.0.2311-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: /home/lzuccarelli/cicd/workdir/golang-gitwebhook-service/sonar-project.properties
+INFO: Analyzing on SonarQube server 7.7.0
+INFO: Default locale: "en_US", source code encoding: "UTF-8"
+INFO: Load global settings
+INFO: Load global settings (done) | time=74ms
+INFO: Server id: BF41A1F2-AWpokEKoCymPbuYrZAx8
+INFO: User cache: /home/lzuccarelli/.sonar/cache
+INFO: Load/download plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=44ms
+INFO: Load/download plugins (done) | time=106ms
+INFO: Process project properties
+INFO: Execute project builders
+INFO: Execute project builders (done) | time=4ms
+INFO: Project key: golang-gitwebhook-service
+INFO: Base dir: /home/lzuccarelli/cicd/workdir/golang-gitwebhook-service
+INFO: Working dir: /home/lzuccarelli/cicd/workdir/golang-gitwebhook-service/.scannerwork
+INFO: Load project settings for component key: 'golang-gitwebhook-service'
+INFO: Load project settings for component key: 'golang-gitwebhook-service' (done) | time=13ms
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=67ms
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=37ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=2398ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO:   Excluded sources: vendor/**, pkg/connectors/*_test.go, pkg/domain/**, pkg/service/*_test.go, pkg/impl/**, cmd/**, pkg/handlers/*_test.go, pkg/schema/**, pkg/validator/*_test.go, pkg/eventbus/*_test.go, tests/**, *.json, *.txt, *.yml, *.xml, *.sh, Dockerfile, *.properties
+INFO: 11 files indexed
+INFO: 0 files ignored because of inclusion/exclusion patterns
+INFO: 0 files ignored because of scm ignore settings
+INFO: Quality profile for go: Sonar way
+INFO: ------------- Run sensors on module golang-gitwebhook-service
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=22ms
+INFO: Sensor JaCoCo XML Report Importer [jacoco]
+INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=12ms
+INFO: Sensor SonarGo [go]
+WARN: Metric 'comment_lines_data' is deprecated. Provided value is ignored.
+INFO: Load coverage report from '/home/lzuccarelli/cicd/workdir/golang-gitwebhook-service/tests/results/cover.out'
+INFO: Sensor SonarGo [go] (done) | time=371ms
+INFO: Sensor JavaXmlSensor [java]
+INFO: Sensor JavaXmlSensor [java] (done) | time=1ms
+INFO: Sensor HTML [web]
+INFO: Sensor HTML [web] (done) | time=10ms
+INFO: ------------- Run sensors on project
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=2ms
+INFO: 1 file had no CPD blocks
+INFO: Calculating CPD for 5 files
+INFO: CPD calculation finished
+INFO: Analysis report generated in 97ms, dir size=94 KB
+INFO: Analysis report compressed in 27ms, zip size=23 KB
+INFO: Analysis report uploaded in 66ms
+INFO: ANALYSIS SUCCESSFUL, you can browse http://192.168.8.118:9000/dashboard?id=golang-gitwebhook-service
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at http://192.168.8.118:9000/api/ce/task?id=AYBXXt0AI-Gv4iOmyVm2
+INFO: Analysis total time: 6.105 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 7.307s
+INFO: Final Memory: 12M/47M
+INFO: ------------------------------------------------------------------------

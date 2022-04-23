@@ -1,0 +1,42 @@
+PASS:<br>go test -v -coverprofile=tests/results/cover.out -tags fake ./...
+?   	github.com/luigizuccarelli/golang-gitwebhook-service/pkg/connectors	[no test files]
+=== RUN   TestHandlers
+=== RUN   TestHandlers/IsAlive_:_should_pass
+=== RUN   TestHandlers/SimpleHandler_:_should_pass_(post)_merge
+2022/04/23 18:01:08 [1;34m [INFO] [0m  : Function makeRequest 
+=== RUN   TestHandlers/SimpleHandler_:_should_pass_(post)_uat
+2022/04/23 18:01:08 [1;34m [INFO] [0m  : Function makeRequest 
+=== RUN   TestHandlers/SimpleHandler_:_should_pass_(post)_prod
+2022/04/23 18:01:08 [1;34m [INFO] [0m  : Function makeRequest 
+=== RUN   TestHandlers/SimpleHandler_:_should_fail_(body_content_error)
+2022/04/23 18:01:08 [1;31m [ERROR] [0m : SimpleHandler could not read body data Inject (force) readAll test error
+=== RUN   TestHandlers/SimpleHandler_:_should_fail_(json_to_golang_struct_error)
+2022/04/23 18:01:08 [1;31m [ERROR] [0m : SimpleHandler could not unmarshal to struct invalid character 'b' looking for beginning of object key string
+=== RUN   TestHandlers/SimpleHandler_:_should_fail_(force_http_error)
+2022/04/23 18:01:08 [1;34m [INFO] [0m  : Function makeRequest 
+2022/04/23 18:01:08 [1;31m [ERROR] [0m : Function makePostRequest http request forced http error
+=== RUN   TestHandlers/SimpleHandler_:_should_fail_(api_secret)
+2022/04/23 18:01:08 [1;31m [ERROR] [0m : SimpleHandler api secret invalid
+--- PASS: TestHandlers (0.00s)
+    --- PASS: TestHandlers/IsAlive_:_should_pass (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_pass_(post)_merge (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_pass_(post)_uat (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_pass_(post)_prod (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_fail_(body_content_error) (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_fail_(json_to_golang_struct_error) (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_fail_(force_http_error) (0.00s)
+    --- PASS: TestHandlers/SimpleHandler_:_should_fail_(api_secret) (0.00s)
+PASS
+coverage: 90.1% of statements
+ok  	github.com/luigizuccarelli/golang-gitwebhook-service/pkg/handlers	0.004s	coverage: 90.1% of statements
+?   	github.com/luigizuccarelli/golang-gitwebhook-service/pkg/schema	[no test files]
+=== RUN   TestEnvars
+=== RUN   TestEnvars/ValidateEnvars_:_should_fail
+2022/04/23 18:01:08 [1;31m [ERROR] [0m : SERVER_PORT envar is mandatory please set it
+=== RUN   TestEnvars/ValidateEnvars_:_should_pass
+--- PASS: TestEnvars (0.00s)
+    --- PASS: TestEnvars/ValidateEnvars_:_should_fail (0.00s)
+    --- PASS: TestEnvars/ValidateEnvars_:_should_pass (0.00s)
+PASS
+coverage: 92.9% of statements
+ok  	github.com/luigizuccarelli/golang-gitwebhook-service/pkg/validator	0.002s	coverage: 92.9% of statements
