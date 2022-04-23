@@ -9,4 +9,4 @@ CICD_CONSOLE_DIR=../console
 
 export LOG_LEVEL NAME SERVER_PORT VERSION TEMPLATE_FILE CICD_CONSOLE_DIR
 
-./build/microservice
+./build/webpipeline

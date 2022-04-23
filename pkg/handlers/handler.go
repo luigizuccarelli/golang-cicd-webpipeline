@@ -44,7 +44,7 @@ func ResultsHandler(w http.ResponseWriter, r *http.Request, conn connectors.Clie
 		return files[i].ModTime().Before(files[j].ModTime())
 	})
 
-	fmt.Println("DEBUG LMZ", files)
+	//fmt.Println("DEBUG LMZ", files)
 
 	var items []schema.ItemInfo
 	var item = &schema.ItemInfo{}
@@ -55,13 +55,13 @@ func ResultsHandler(w http.ResponseWriter, r *http.Request, conn connectors.Clie
 		item.Time = f.ModTime().Unix()
 		unixTimeUTC := time.Unix(f.ModTime().Unix(), 0)
 		item.DisplayTime = fmt.Sprintf("%v", unixTimeUTC)
-		contents := string(data)
-		item.Log = contents
-		if contents[0:3] == "PAS" {
+		replacer := strings.NewReplacer("\n", "<br>", "\x1b[1;34m [INFO] \x1b[0m", "<span style=\"color:#3498eb\">&nbsp;[INFO]</span>","\x1b[1;32m [DEBUG] \x1b[0m","<span style=\"color:#34eb40\">&nbsp;[DEBUG]</span>","\x1b[1;36m [TRACE] \x1b[0m","<span style=\"color:#d234eb\">&nbsp;[TRACE]</span>","\x1b[1;31m [ERROR] \x1b[0m","<span style=\"color:#eb4034\">&nbsp;[ERROR]</span>","INFO:","<span style=\"color:#3498eb\">&nbsp;INFO:</span>")
+		item.Log =  replacer.Replace(string(data))
+		if item.Log[0:3] == "PAS" {
 			item.Pass = true
 			item.Fail = false
 		}
-		if contents[0:3] == "ERR" {
+		if item.Log[0:3] == "ERR" {
 			item.Pass = false
 			item.Fail = true
 		}
